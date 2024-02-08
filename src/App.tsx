@@ -6,31 +6,37 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
+
+
+
 function App() {
 
   const router = createHashRouter([
     {
       path: "/",
-      element: <h3>Home</h3>
+      element: <h3>Hello world!</h3>,
     },
     {
       path: "/setup",
-      element: <h3>Setup</h3>
+      element: <h3>setup</h3>,
     },
     {
       path: "/play",
-      element: <h3>Play</h3>
+      element: <h3>setup</h3>,
     },
-  ]);  
+
+  ]);
 
 
-  return (      
+  return (
     <div 
-      className="App p-3"
-    >
-      <RouterProvider 
-        router={router} 
-      />
-    </div>
-  );
+    className="App p-3"
+  >
+    <RouterProvider 
+      router={router} 
+    />
+  </div>
+);
 }
+
+export default App;
