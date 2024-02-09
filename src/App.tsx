@@ -1,42 +1,43 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+
 import {
   createHashRouter,
   RouterProvider,
 } from "react-router-dom";
 
+import { Home } from './Home';
+import { Setup } from './Setup';
+import { Play } from './Play';
 
-
-
-function App() {
+const App = () => {
 
   const router = createHashRouter([
     {
       path: "/",
-      element: <h3>Hello world!</h3>,
+      element: <Home />
     },
     {
       path: "/setup",
-      element: <h3>setup</h3>,
+      element: <Setup />
     },
     {
       path: "/play",
-      element: <h3>setup</h3>,
+      element: <Play />
     },
-
-  ]);
+  ]);  
 
 
   return (
     <div 
-    className="App p-3"
-  >
-    <RouterProvider 
-      router={router} 
-    />
-  </div>
-);
+      className="App p-3"
+    >
+      <RouterProvider 
+        router={router} 
+      />
+    </div>
+  );
 }
 
 export default App;
