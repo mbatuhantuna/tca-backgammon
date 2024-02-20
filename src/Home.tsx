@@ -22,26 +22,51 @@ export const Home: FC<HomeProps> = ({ leaderboardData }) => {
                 onClick={() => nav('/setup')}
             >
                 Play
-            </button>
+                </button>
             <div
-            className='card mt -3 bg-base-100 shadow-xl'
+                className='card mt-3 bg-base-100 shadow-xl'
             >
-                <div 
-                className='card-body'
+                <div
+                    className='card-body'
                 >
-                <h2 
-                className='card-title'
-                >
-                    Leaderboard 
+                    <h2
+                        className='card-title'
+                    >
+                        Leaderboard
                     </h2>
                     {
-                        leaderboardData.map(x => (
+                        leaderboardData.length > 0
+                        ? (
+                            <table
+                                className='table'
+                            >
+                                <thead>
+                                    <tr>
+                                        <th>W</th>
+                                        <th>L</th>
+                                        <th>AVG</th>
+                                        <th>PLAYER</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        leaderboardData.map(lbe => (
+                                            <tr>
+                                                <td>{ lbe.wins }</td>
+                                                <td>{ lbe.losses }</td>
+                                                <td>{ lbe.avg.toFixed(3) }</td>
+                                                <td>{ lbe.name }</td>
+                                            </tr>
+                                        ))
+                                    }
+                                </tbody>
+                            </table>
+                        )
+                        : (
                             <p>
-                                {
-                                    x.name
-                                }
+                                Play a game to see the leaderboard!
                             </p>
-                        ))
+                        )
                     }
                 </div>
             </div>
