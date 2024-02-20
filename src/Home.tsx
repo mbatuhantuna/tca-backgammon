@@ -33,7 +33,16 @@ export const Home: FC<HomeProps> = ({ leaderboardData }) => {
                 className='card-title'
                 >
                     Leaderboard 
-                </h2>
+                    </h2>
+                    {
+                        leaderboardData.map(x => (
+                            <p>
+                                {
+                                    x.name
+                                }
+                            </p>
+                        ))
+                    }
                 </div>
             </div>
         </>
