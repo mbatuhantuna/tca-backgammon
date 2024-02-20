@@ -1,6 +1,13 @@
 import { useNavigate } from 'react-router-dom';
+import { GameResult } from './GameResults';
+import { FC } from 'react';
 
-export const Play = () => {
+interface PlayProps {
+  addNewGameResult: (result: GameResult) => void;
+}
+
+export const Play: FC<PlayProps> = ({ addNewGameResult }) => {
+
     const nav = useNavigate();
 
     return (
@@ -13,7 +20,16 @@ export const Play = () => {
         </p>
         <button
             className="btn btn-outline btn-primary"
-            onClick={() => true ? nav(-2) : nav('/home')}
+            onClick={() => {
+              addNewGameResult({
+                winner: "Tom"
+                , players: [
+                  "Tom"
+                  , "Taylor"
+                ]
+              });
+              nav(-2);
+            }}
         >
             Done
         </button>
