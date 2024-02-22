@@ -1,20 +1,29 @@
+import { FC, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export const Setup = () => {
+interface SetupProps {
+    setTitle: (t: string) => void;
+};
+
+export const Setup: FC<SetupProps> = ({ setTitle }) => {
+
+    useEffect(
+        () => setTitle("Game Setup")
+        , []
+    );
 
     const nav = useNavigate();
 
     return (
-        <>
-            <h3>
-                Setup
-            </h3>
+        <div
+            className='flex flex-col gap-3'
+        >
             <button
-                className="btn btn-link"
+                className="btn btn-lg btn-primary"
                 onClick={() => nav('/play')}
             >
                 Start the Game
             </button>
-        </>
+        </div>
     );
   };

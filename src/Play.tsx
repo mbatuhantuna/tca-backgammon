@@ -1,25 +1,27 @@
 import { useNavigate } from 'react-router-dom';
 import { GameResult } from './GameResults';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 
 interface PlayProps {
   addNewGameResult: (result: GameResult) => void;
+  setTitle: (t: string) => void;
 }
 
-export const Play: FC<PlayProps> = ({ addNewGameResult }) => {
+export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle }) => {
+
+    useEffect(
+      () => setTitle("Play Backgammon")
+      , []
+    );
 
     const nav = useNavigate();
 
     return (
-      <>
-        <h3>
-          Play
-        </h3>
-        <p>
-          Play the game and tap the app ! ! !
-        </p>
+      <div
+        className='flex flex-col gap-3'
+      >
         <button
-            className="btn btn-outline btn-primary"
+            className="btn btn-lg btn-primary"
             onClick={() => {
               addNewGameResult({
                 winner: "Tom"
@@ -33,6 +35,11 @@ export const Play: FC<PlayProps> = ({ addNewGameResult }) => {
         >
             Done
         </button>
-      </>
+        <p
+          className='text-xs'
+        >
+          Play the game and tap the app ! ! !
+        </p>        
+      </div>
     );
   };
