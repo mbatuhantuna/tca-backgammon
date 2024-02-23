@@ -20,7 +20,7 @@ const dummyGameResults: GameResult[] = [
   },
   {
     winner: "John",
-    players: ["Tom", "Batu", "Julia", "Melisa", "John"],
+    players: ["Tom", "Julia" , "Batu", "Melisa", "John"],
   },
   {
     winner: "Harry",
