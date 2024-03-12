@@ -32,7 +32,7 @@ export const Home: FC<HomeProps> = ({ leaderboardData, setTitle }) => {
                 className='card bg-base-100 shadow-xl'
             >
                 <div
-                    className='card-body'
+                    className='card-body p-3'
                 >
                     <h2
                         className='card-title'
