@@ -11,21 +11,28 @@ import { GameResult, getLeaderboard } from "./GameResults";
 
 const dummyGameResults: GameResult[] = [
   {
-    winner: "Tom",
-    players: ["Tom", "Batu", "Julia", "Melisa", "John"],
-  },
-  {
-    winner: "John",
-    players: ["Batu", "Julia", "Melisa", "John"],
-  },
-  {
-    winner: "John",
-    players: ["Tom", "Julia" , "Batu", "Melisa", "John"],
-  },
-  {
-    winner: "Harry",
-    players: ["Harry", "hermione", "Ron"],
-  },
+      winner: "Tom"
+      , players: [
+          "Tom"
+          , "Batu"
+          , "Julia"
+          , "Melisa"
+          , "John"
+      ]
+      , start: "2024-02-28T18:10:32.123Z"
+      , end: "2024-02-28T18:15:34.123Z"
+  }
+  , {
+      winner: "John"
+      , players: [
+          "Batu"
+          , "Julia"
+          , "Melisa"
+          , "John"
+      ]
+      , start: "2024-02-28T18:20:32.123Z"
+      , end: "2024-02-28T18:47:34.123Z"
+  }
 ];
 
 const App = () => {

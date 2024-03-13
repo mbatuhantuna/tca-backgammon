@@ -5,6 +5,8 @@
 export type GameResult = {
     winner: string;
     players: string[];
+    start: string;
+    end: string;
 };
 
 export type LeaderboardEntry = {
