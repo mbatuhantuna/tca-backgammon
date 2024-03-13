@@ -10,7 +10,8 @@ interface PlayProps {
 export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle }) => {
 
 
-  const [start, setStart] = useState (new Date().toISOString)
+  const [start, setStart] = useState(new Date().toISOString());
+
     useEffect(
       () => setTitle("Play Backgammon")
       , []
@@ -31,7 +32,7 @@ export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle }) => {
                   "Tom"
                   , "Taylor"
                 ]
-                ,start: start
+                , start: start
                 , end: new Date().toISOString()
               });
               nav(-2);

@@ -7,7 +7,11 @@ import { createHashRouter, RouterProvider } from "react-router-dom";
 import { Home, AppTitle } from "./Home";
 import { Setup } from "./Setup";
 import { Play } from "./Play";
-import { GameResult, getLeaderboard } from "./GameResults";
+import { GameResult
+  , getLeaderboard 
+  , GeneralFacts,
+  getGeneralFacts
+} from "./GameResults";
 
 const dummyGameResults: GameResult[] = [
   {
@@ -53,6 +57,7 @@ const App = () => {
       element: (
         <Home
           leaderboardData={getLeaderboard(gameResults)}
+          generalFacts ={getGeneralFacts(gameResults)}
           setTitle={setTitle}
         />
       ),
