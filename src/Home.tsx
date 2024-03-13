@@ -54,7 +54,7 @@ export const Home: FC<HomeProps> = ({
                                     <td> {generalFacts.totalGames} </td>
                                 </tr><tr>
                                         <td> Last Played </td>
-                                        <td> {generalFacts.lastPlayed} ago </td>
+                                        <td> {generalFacts.lastPlayed} </td>
                                     </tr><tr>
                                         <td> Shortest Game </td>
                                         <td> {generalFacts.shortestGame} </td>
