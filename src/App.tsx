@@ -48,6 +48,9 @@ const App = () => {
 
   const [title, setTitle] = useState(AppTitle);
 
+
+  const [chosenPlayers, setChosenPlayers] = useState<string[]>([]);
+  
   const addNewGameResult = (result: GameResult) =>
     setGameResults([...gameResults, result]);
 
@@ -66,11 +69,16 @@ const App = () => {
       path: "/setup",
       element: <Setup setTitle={setTitle} 
       previousPlayers = {getPreviousPlayers(gameResults)} 
+      setChosenPlayers = {setChosenPlayers}
       />,
     },
     {
       path: "/play",
-      element: <Play addNewGameResult={addNewGameResult} setTitle={setTitle} />,
+      element: <Play 
+      addNewGameResult={addNewGameResult} 
+      setTitle={setTitle} 
+      chosenPlayers={chosenPlayers}      
+      />,
     },
   ]);
 
