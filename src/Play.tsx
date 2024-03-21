@@ -35,6 +35,7 @@ export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle }) => {
                 ]
                 , start: start
                 , end: new Date().toISOString()
+                // , totalTurns: turnNumber
               });
               nav(-2);
             }}
