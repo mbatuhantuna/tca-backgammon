@@ -10,6 +10,7 @@ interface PlayProps {
 export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle }) => {
 
 
+  const [turnNumber, setTurnNumber] = useState(1);
   const [start, setStart] = useState(new Date().toISOString());
 
     useEffect(
@@ -44,7 +45,16 @@ export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle }) => {
           className='text-xs'
         >
           Play the game and tap the app ! ! !
-        </p>        
+        </p>   
+        <p>
+        Current Doubles: {turnNumber}
+        </p>
+        <button
+          className='btn btn-link'
+          onClick={() => setTurnNumber(turnNumber + 1)}
+        >
+          Next Double
+        </button>     
       </div>
     );
   };
