@@ -3,10 +3,15 @@ import { useNavigate } from 'react-router-dom';
 
 interface SetupProps {
     setTitle: (t: string) => void;
+    previousPlayers:string[];
 };
 
-export const Setup: FC<SetupProps> = ({ setTitle }) => {
+export const Setup: FC<SetupProps> = ({ 
+    setTitle
+    ,previousPlayers
+ }) => {
 
+    console.log(previousPlayers);
     useEffect(
         () => setTitle("Game Setup")
         , []
