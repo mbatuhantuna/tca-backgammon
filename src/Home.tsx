@@ -4,11 +4,14 @@ import { FC, useEffect } from 'react';
 
 export const AppTitle = "Backgammon Companion App";
 
+
 interface HomeProps {
     leaderboardData: LeaderboardEntry[];
     setTitle: (t: string) => void;
     generalFacts:GeneralFacts;
 }
+
+
 
 export const Home: FC<HomeProps> = ({ 
     leaderboardData 
@@ -113,6 +116,7 @@ export const Home: FC<HomeProps> = ({
                             <p>
                                 Play a game to see the leaderboard!
                             </p>
+                            
                         )
                     }
                 </div>

@@ -21,12 +21,39 @@ export const Setup: FC<SetupProps> = ({
 
     })));
 
+    const [newPlayerName, setNewPlayerName] = useState("");
+
     useEffect(
         () => setTitle("Game Setup")
         , []
     );
 
     const nav = useNavigate();
+
+    const validateAndAddNewPlayer = () => {
+
+    if (
+        newPlayerName.length > 0
+        && !avaiblePlayers.some(x => x.name.toUpperCase()=== newPlayerName.toUpperCase())
+    ) {
+
+        setAvailablePlayers(
+            [
+            ...avaiblePlayers
+            ,{
+                name:newPlayerName
+                ,checked:true
+            }
+        ].sort((a, b) => a.name.localeCompare(b.name))
+        );
+
+        setNewPlayerName("");
+
+    }
+
+       
+    };
+
 
     return (
         <div
@@ -54,6 +81,23 @@ export const Setup: FC<SetupProps> = ({
             <div
             className='card-boy p-3'
             >
+                <div
+                className='flex mb-5'
+                >
+                <input 
+                type="text" 
+                placeholder="Enter New Player" 
+                className="input input-bordered w-full max-w-xs" 
+                value={newPlayerName}
+                onChange={(e)=> setNewPlayerName(e.target.value)}
+                />
+                <button
+              className="btn btn-accent ml-3"
+              onClick={validateAndAddNewPlayer}
+                >
+                    Add
+                </button>
+                </div>
                 {
                     avaiblePlayers.map(x => (
                     <div 
@@ -66,7 +110,7 @@ export const Setup: FC<SetupProps> = ({
                     >
                         <input 
                         type="checkbox" 
-                        className="checkbox checkbox-primary"
+                        className="checkbox checkbox-primary mb-5"
                         checked = {x.checked}
                         onChange={() => setAvailablePlayers([
                             ...avaiblePlayers.map(y => ({
