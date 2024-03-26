@@ -83,7 +83,10 @@ const App = () => {
   ]);
 
   return (
-    <div className="App">
+    <div className="App"
+    data-theme ="dark"
+    >
+     
       <div className="navbar bg-base-300">
         {title === AppTitle && (
           <svg

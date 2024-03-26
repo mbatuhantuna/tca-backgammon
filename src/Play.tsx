@@ -25,18 +25,6 @@ export const Play: FC<PlayProps> = ({
 
     const nav = useNavigate();
 
-    //Local function 
-  const gameOver = (winner: string) => {
-      addNewGameResult({
-        winner: winner
-        , players: chosenPlayers
-        , start: start
-        , end: new Date().toISOString()
-      });
-      nav(-2);
-    };
-
-
     return (
       <div
         className='flex flex-col gap-3'
@@ -44,9 +32,16 @@ export const Play: FC<PlayProps> = ({
         {
         chosenPlayers.map(x => (
           <button
-           key ={x}
                   className="btn btn-lg btn-primary"
-                  onClick={() => gameOver(x)}
+                  onClick={() => {
+                    addNewGameResult({
+                      winner: x
+                      , players: chosenPlayers
+                      , start: start
+                      , end: new Date().toISOString()
+                    });
+                    nav(-2);
+                  }}
               >
                   {x} Won
               </button>
