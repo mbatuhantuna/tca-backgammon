@@ -32,6 +32,7 @@ export const Play: FC<PlayProps> = ({
         {
         chosenPlayers.map(x => (
           <button
+           key ={x}
                   className="btn btn-lg btn-primary"
                   onClick={() => {
                     addNewGameResult({
