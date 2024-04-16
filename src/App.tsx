@@ -11,6 +11,7 @@ import { GameResult
   , getLeaderboard
   , getGeneralFacts
   , getPreviousPlayers
+  , getAverageGameDurationsByPlayerCount
 } from "./GameResults";
 
 const dummyGameResults: GameResult[] = [
@@ -63,6 +64,7 @@ const App = () => {
           leaderboardData={getLeaderboard(gameResults)}
           generalFacts ={getGeneralFacts(gameResults)}
           setTitle={setTitle}
+          avgGameDurationsByPlayerCount={getAverageGameDurationsByPlayerCount(gameResults)}
         />
       ),
     },

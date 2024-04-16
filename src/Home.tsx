@@ -9,7 +9,12 @@ interface HomeProps {
     leaderboardData: LeaderboardEntry[];
     setTitle: (t: string) => void;
     generalFacts:GeneralFacts;
+    avgGameDurationsByPlayerCount: {
+        numberOfPlayers: number;
+        avgGameDuration: any;
+    }[];
 }
+
 
 
 
@@ -17,8 +22,10 @@ export const Home: FC<HomeProps> = ({
     leaderboardData 
     ,setTitle
     ,generalFacts
+    , avgGameDurationsByPlayerCount
  }) => {
 
+    console.log(avgGameDurationsByPlayerCount);
     useEffect(
         () => setTitle(AppTitle)
         , []

@@ -21,7 +21,7 @@ export type LeaderboardEntry = {
     wins: number;
     losses: number;
     avg: number;
-    name: string;
+    name: string; 
 };
 
 export type GeneralFacts = {
@@ -59,18 +59,15 @@ export const getLeaderboard = (results: GameResult[]): LeaderboardEntry[] => {
         (a, b) => (b.avg * 1000 + b.wins + b.losses) - (a.avg * 1000 + a.wins + a.losses)
     );
 };
-
-export const getGeneralFacts = (results: GameResult[]): GeneralFacts => {
-
-    const now = Date.now();
-
-    const gameEndDatesInMilliseconds = results.map(
-        x => Date.parse(x.end)
-    );
-
-    const gameDurationsInMilliseconds = results.map(
-        x => Date.parse(x.end) - Date.parse(x.start)
-    );
+    export const getGeneralFacts = (results: GameResult[]): GeneralFacts => {
+        const now = Date.now();
+    
+        const gameEndDatesInMilliseconds = results.map((x) => Date.parse(x.end));
+    
+        const gameDurationsInMilliseconds = results.map(
+    
+        (x) => getGameDurationInMilliseconds(x)
+        );
 
     return {
         totalGames: results.length
@@ -95,6 +92,41 @@ export const getGeneralFacts = (results: GameResult[]): GeneralFacts => {
     };
 };
 
+export const getAverageGameDurationsByPlayerCount = (grs: GameResult[]) => {
+
+    // Group game results by player count, advanced reduce()...
+    const grouped = grs.reduce(
+        (acc, x) => acc.set(
+            x.players.length
+            //, [x]
+            , [
+                ...acc.get(x.players.length) ?? []
+                , x
+            ]
+        ) 
+        , new Map<number, GameResult[]>()
+    );
+
+    // const grouped = Map.groupBy(
+    //     grs
+    //     , (x) => x.players.length
+
+    //     // Show off nonsense, but fun : - )) 
+    //     //, (x) => x.winner.length 
+    // );
+
+    //console.log(grouped);
+
+    // Shape the grouped results into something to display these fun facts... Includes sorting...
+    return [...grouped]
+        .sort((a, b) => a[0] - b[0])
+        .map(x => ({
+            numberOfPlayers: x[0]
+            , avgGameDuration: formatterDefault(
+            getAvgGameDurationInMilliseconds(x[1])) // minutes
+        }))
+    ;
+};
 
 //
 // Internal functions...
@@ -119,5 +151,23 @@ const getLeaderboardEntryForPlayer = (results: GameResult[], player: string): Le
             
         , name: player
     };
+};
+
+
+const getGameDurationInMilliseconds = (gr: GameResult) => Date.parse(gr.end) - Date.parse(gr.start);
+
+const getAvgGameDurationInMilliseconds = (grs: GameResult[]) => {
+
+    // Add up all the game durations, simple reduce()...
+    const totalGameTimeInMilliseconds = grs.reduce(
+        (acc, x) => acc + getGameDurationInMilliseconds(x)
+        , 0
+    );
+
+    // Average is that total divided by number of games, accounting for divide by zero errors...
+    return grs.length > 0
+        ? totalGameTimeInMilliseconds / grs.length
+        : 0
+    ;
 };
 
