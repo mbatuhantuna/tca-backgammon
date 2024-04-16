@@ -52,7 +52,7 @@ export const Home: FC<HomeProps> = ({
                     <h2
                         className='card-title'
                     >
-                        Leaderboard
+                        General
                     </h2>
                     <table
                                 className='table'
@@ -87,7 +87,7 @@ export const Home: FC<HomeProps> = ({
                     <h2
                         className='card-title'
                     >
-                   General
+                   Leaderboard
                     </h2>
                     {
                         leaderboardData.length > 0
@@ -122,6 +122,53 @@ export const Home: FC<HomeProps> = ({
                         : (
                             <p>
                                 Play a game to see the leaderboard!
+                            </p>
+                            
+                        )
+                    }
+                </div>
+            </div>
+            
+            <div
+                className='card bg-base-100 shadow-xl'
+            >
+                <div
+                    className='card-body p-3'
+                >
+                    <h2
+                        className='card-title'
+                    >
+                   Avg Game Time
+                    </h2>
+                    {
+                        avgGameDurationsByPlayerCount.length > 0
+                        ? (
+                            <table
+                                className='table'
+                            >
+                                <thead>
+                                    <tr>
+                                        <th># PLAYERS</th>
+                                        <th>AVG DURATION</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        avgGameDurationsByPlayerCount.map(agdbpc => (
+                                            <tr
+                                                key={agdbpc.numberOfPlayers}
+                                            >
+                                                <td>{ agdbpc.numberOfPlayers }</td>
+                                                <td>{ agdbpc.avgGameDuration }</td>
+                                            </tr>
+                                        ))
+                                    }
+                                </tbody>
+                            </table>
+                        )
+                        : (
+                            <p>
+                                Play a game to see the average game times!
                             </p>
                             
                         )
