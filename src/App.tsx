@@ -13,6 +13,7 @@ import { GameResult
   , getPreviousPlayers
   , getAverageGameDurationsByPlayerCount
 } from "./GameResults";
+import { saveGameToCloud } from "./tca-cloud-api";
 
 const dummyGameResults: GameResult[] = [
   {
@@ -53,8 +54,27 @@ const App = () => {
   const [chosenPlayers, setChosenPlayers] = useState<string[]>([]);
   const [darkMode, setDarkMode] = useState(false);
   
-  const addNewGameResult = (result: GameResult) =>
-    setGameResults([...gameResults, result]);
+  const addNewGameResult = async (result: GameResult) =>{
+
+    // Save the game result to the cloud.
+
+    await saveGameToCloud(
+      "mtuna@madisoncollege,edu"
+      , "tca-backgammon-24s"
+      ,result.end
+      ,result
+
+    )
+
+    // Optimistically update the lifted state with new game result.
+
+    setGameResults(
+      [...gameResults
+      , result
+      ]
+      );
+  };
+    
 
   const router = createHashRouter([
     {
