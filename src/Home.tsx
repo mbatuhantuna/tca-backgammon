@@ -114,6 +114,7 @@ export const Home: FC<HomeProps> = ({
                                                 <td>{ lbe.losses }</td>
                                                 <td>{ lbe.avg.toFixed(3) }</td>
                                                 <td>{ lbe.name }</td>
+                                                <td>{ lbe.abgPlayerDoubles }</td>
                                             </tr>
                                         ))
                                     }

@@ -22,6 +22,7 @@ export type LeaderboardEntry = {
     losses: number;
     avg: number;
     name: string; 
+    abgPlayerDoubles: string; 
 };
 
 export type GeneralFacts = {
@@ -150,6 +151,7 @@ const getLeaderboardEntryForPlayer = (results: GameResult[], player: string): Le
             : 0
             
         , name: player
+        , abgPlayerDoubles: "batu"
     };
 };
 
