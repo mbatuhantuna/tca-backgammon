@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
@@ -13,53 +13,52 @@ import { GameResult
   , getPreviousPlayers
   , getAverageGameDurationsByPlayerCount
 } from "./GameResults";
-import { saveGameToCloud } from "./tca-cloud-api";
-
-const dummyGameResults: GameResult[] = [
-  {
-      winner: "Tom"
-      , players: [
-          "Tom"
-          , "Batu"
-          , "Julia"
-          , "Melisa"
-          , "John"
-      ]
-      , start: "2024-02-28T18:10:32.123Z"
-      , end: "2024-02-28T18:15:34.123Z"
-  }
-  , {
-      winner: "John"
-      , players: [
-          "Batu"
-          , "Julia"
-          , "Melisa"
-          , "John"
-      ]
-      , start: "2024-02-28T18:20:32.123Z"
-      , end: "2024-02-28T18:47:34.123Z"
-  }
-];
+import { loadGamesFromCloud, saveGameToCloud } from "./tca-cloud-api";
 
 const App = () => {
   // Uncomment this line to see app running without any game results...
   // const [gameResults, setGameResults] = useState<GameResult[]>([]);
 
 
-   const [gameResults, setGameResults] = useState<GameResult[]>(dummyGameResults);
+   const [gameResults, setGameResults] = useState<GameResult[]>([]);
 
   const [title, setTitle] = useState(AppTitle);
 
 
   const [chosenPlayers, setChosenPlayers] = useState<string[]>([]);
   const [darkMode, setDarkMode] = useState(false);
+
+
+  useEffect(
+    () => {
+      const init = async () => {
+
+        if(!ignore) {
+          const cloudGameResults = await loadGamesFromCloud(
+            "mtuna@madisoncollege.edu"
+            ,"tca-backgammon-24s"
+          );
+          setGameResults(cloudGameResults);
+        }
+      };
+
+      let ignore = false;
+      init();
+
+      return () => {
+        ignore = true;
+      };
+    }
+    , []
+
+  );
   
   const addNewGameResult = async (result: GameResult) =>{
 
     // Save the game result to the cloud.
 
     await saveGameToCloud(
-      "mtuna@madisoncollege,edu"
+      "mtuna@madisoncollege.edu"
       , "tca-backgammon-24s"
       ,result.end
       ,result
