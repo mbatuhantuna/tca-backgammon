@@ -20,6 +20,8 @@ export const Play: FC<PlayProps> = ({
 
   const nav = useNavigate();
 
+  const [playerDoubles, setPlayerDoubles] = useState<[string, number][]>(chosenPlayers.map(x => [x, 0]));
+
   return (
     <div className="flex flex-col gap-3">
       {chosenPlayers.map((x) => (
@@ -33,9 +35,45 @@ export const Play: FC<PlayProps> = ({
             >
               {x}
               </h2>
-          <p>
-            other controls here
-          </p>
+              <p
+                className='text-primary'
+              >
+                Doubles
+              </p>
+              <div
+                className="flex gap-3 items-center mb-5"
+              >
+            <button
+                  className='btn btn-outline btn-sm btn-warning font-bold text-lg'
+                  onClick={() => setPlayerDoubles(
+                    playerDoubles.map(y => [
+                      y[0],
+                      y[0] === x ? Math.max(0, y[1] - 1) : y[1] 
+                    ])
+                  )}
+                >
+                  - 1
+                </button>
+                <h2
+                  className='text-4xl font-bold mx-5 min-w-10 text-right'
+                >
+                  {
+                    playerDoubles.find(y => y[0] === x)![1]
+                  }
+                </h2>
+                <button
+                  className='btn btn-outline btn-success btn-sm font-bold text-lg'
+                  onClick={() => setPlayerDoubles(
+                    playerDoubles.map(y => [
+                      y[0]
+                      , y[0] === x ? y[1] + 1 : y[1]
+                    ])
+                  )}
+                >
+                  + 1
+                </button>
+              </div>
+         
           <p>local 
             other controls here
           </p>
@@ -60,15 +98,6 @@ export const Play: FC<PlayProps> = ({
       className="text-xs"
       >Play the game and tap the app ! ! !
       </p>
-      <p>
-        Current Doubles: {turnNumber}
-        </p>
-      <button
-        className="btn btn-link"
-        onClick={() => setTurnNumber(turnNumber + 1)}
-      >
-        Next Double
-      </button>
     </div>
   );
 };

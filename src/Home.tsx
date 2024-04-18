@@ -101,6 +101,7 @@ export const Home: FC<HomeProps> = ({
                                         <th>L</th>
                                         <th>AVG</th>
                                         <th>PLAYER</th>
+                                        <th>AVG PLAYER DOUBLE</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -175,6 +176,52 @@ export const Home: FC<HomeProps> = ({
                     }
                 </div>
             </div>
+            {/* <div
+                className='card bg-base-100 shadow-xl'
+            >
+                <div
+                    className='card-body p-3'
+                >
+                    <h2
+                        className='card-title'
+                    >
+                   Avg Player Doubles
+                    </h2>
+                    {
+                        avgGameDurationsByPlayerCount.length > 0
+                        ? (
+                            <table
+                                className='table'
+                            >
+                                <thead>
+                                    <tr>
+                                        <th># PLAYERS</th>
+                                        <th>AVG DURATION</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        avgGameDurationsByPlayerCount.map(agdbpc => (
+                                            <tr
+                                                key={agdbpc.numberOfPlayers}
+                                            >
+                                                <td>{ agdbpc.numberOfPlayers }</td>
+                                                <td>{ agdbpc.avgGameDuration }</td>
+                                            </tr>
+                                        ))
+                                    }
+                                </tbody>
+                            </table>
+                        )
+                        : (
+                            <p>
+                                Play a game to see the average game times!
+                            </p>
+                            
+                        )
+                    }
+                </div>
+            </div> */}
         </div>
     );
 };
