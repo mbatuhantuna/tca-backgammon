@@ -14,6 +14,8 @@ import { GameResult
   , getAverageGameDurationsByPlayerCount
 } from "./GameResults";
 import { loadGamesFromCloud, saveGameToCloud } from "./tca-cloud-api";
+import localforage from "localforage";
+
 
 const App = () => {
   // Uncomment this line to see app running without any game results...
@@ -29,17 +31,33 @@ const App = () => {
   const [chosenPlayers, setChosenPlayers] = useState<string[]>([]);
   const [darkMode, setDarkMode] = useState(false);
 
+  const [dialogEmail, setDialogEmail] = useState("");
+  const [cloudApiEmail, setCloudApiEmail] = useState("");
+
 
   useEffect(
     () => {
       const init = async () => {
 
-        if(!ignore) {
-          const cloudGameResults = await loadGamesFromCloud(
-            "mtuna@madisoncollege.edu"
-            ,"tca-backgammon-24s"
-          );
-          setGameResults(cloudGameResults);
+        if (!ignore) {
+
+          const savedEmail = await localforage.getItem<string>("email") ?? "";
+
+          if (savedEmail.length > 0) {
+
+            setCloudApiEmail(savedEmail);
+            setDialogEmail(savedEmail);
+
+            const cloudGameResults = await loadGamesFromCloud(
+              savedEmail
+              , "tca-backgammon-24s"
+            );
+
+            setGameResults(cloudGameResults);
+          }
+          else {
+            dialogRef.current?.showModal()
+          }
         }
       };
 
@@ -50,7 +68,7 @@ const App = () => {
         ignore = true;
       };
     }
-    , []
+    , [cloudApiEmail]
 
   );
   
@@ -59,7 +77,7 @@ const App = () => {
     // Save the game result to the cloud.
 
     await saveGameToCloud(
-      "mtuna@madisoncollege.edu"
+      cloudApiEmail
       , "tca-backgammon-24s"
       ,result.end
       ,result
@@ -172,6 +190,13 @@ const App = () => {
         className="font-bold text-lg"
         >Please enter email address for saving game results.
         </h3>
+        <input
+            type="text"
+            placeholder="Email Address"
+            className="input input-bordered w-full mt-3"
+            value={dialogEmail}
+            onChange={(e) => setDialogEmail(e.target.value)}
+          />
         <div 
         className="modal-action"
         >
@@ -181,6 +206,10 @@ const App = () => {
             {/* if there is a button in form, it will close the modal */}
             <button 
             className="btn btn-primary"
+            onClick={async () => {
+              await localforage.setItem<string>("email", dialogEmail);
+              setCloudApiEmail(dialogEmail);
+            }}
             >Done
             </button>
           </form>
