@@ -17,6 +17,8 @@ import { loadGamesFromCloud, saveGameToCloud } from "./tca-cloud-api";
 import localforage from "localforage";
 
 
+
+
 const App = () => {
   // Uncomment this line to see app running without any game results...
   // const [gameResults, setGameResults] = useState<GameResult[]>([]);
@@ -124,9 +126,15 @@ const App = () => {
   ]);
 
   return (
+
+
+
+
     <div className="App"
     data-theme={darkMode ? "dark" : "light"}
     >
+
+
 
       <div className="navbar bg-base-300">
         {title === AppTitle && (
@@ -217,6 +225,8 @@ const App = () => {
       </div>
     </dialog>
     </div>
+    
+    
   );
 };
 

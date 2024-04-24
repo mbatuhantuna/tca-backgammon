@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { GeneralFacts, LeaderboardEntry } from './GameResults';
 import { FC, useEffect } from 'react';
+import PieChart from "./PieChart";
 
 export const AppTitle = "Backgammon Companion App";
 
@@ -129,7 +130,7 @@ export const Home: FC<HomeProps> = ({
                         )
                     }
                 </div>
-            </div>
+            </div>  
             
             <div
                 className='card bg-base-100 shadow-xl'
@@ -176,7 +177,35 @@ export const Home: FC<HomeProps> = ({
                         )
                     }
                 </div>
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
             </div>
+
+            <div>
+      <PieChart
+      />
+      </div>
+            
             {/* <div
                 className='card bg-base-100 shadow-xl'
             >
@@ -224,5 +253,7 @@ export const Home: FC<HomeProps> = ({
                 </div>
             </div> */}
         </div>
+        
+        
     );
 };
