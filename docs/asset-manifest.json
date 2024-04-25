@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/tca-backgammon/static/css/main.64c10112.css",
-    "main.js": "/tca-backgammon/static/js/main.410c3dc9.js",
+    "main.css": "/tca-backgammon/static/css/main.42863be6.css",
+    "main.js": "/tca-backgammon/static/js/main.57568d1a.js",
     "static/js/592.d623e363.chunk.js": "/tca-backgammon/static/js/592.d623e363.chunk.js",
     "index.html": "/tca-backgammon/index.html",
-    "main.64c10112.css.map": "/tca-backgammon/static/css/main.64c10112.css.map",
-    "main.410c3dc9.js.map": "/tca-backgammon/static/js/main.410c3dc9.js.map",
+    "main.42863be6.css.map": "/tca-backgammon/static/css/main.42863be6.css.map",
+    "main.57568d1a.js.map": "/tca-backgammon/static/js/main.57568d1a.js.map",
     "592.d623e363.chunk.js.map": "/tca-backgammon/static/js/592.d623e363.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.64c10112.css",
-    "static/js/main.410c3dc9.js"
+    "static/css/main.42863be6.css",
+    "static/js/main.57568d1a.js"
   ]
 }
