@@ -178,9 +178,34 @@ export const Home: FC<HomeProps> = ({
                     }
                 </div>
 
- 
+      
+<div 
+className=
+'card bg-base-100 shadow-xl'
+>
+    <div 
+    className='card-body p-3'
+    >
+       
+        <h2 
+        className='card-title'
+        >
+            Chart Explanation
+        </h2>
+        <h1
+            className='card-title mt-4 flex justify-center items-center h-full w-full'
+        >
+            Chosen Player
+        </h1>
+    </div>
 
-
+    <div 
+    className=
+    'card-title mt-4 flex justify-center items-center h-full w-full'
+    >
+        <PieChart />
+    </div>
+</div>
 
 
 
@@ -201,10 +226,7 @@ export const Home: FC<HomeProps> = ({
       
             </div>
 
-            <div>
-      <PieChart
-      />
-      </div>
+       
             
             {/* <div
                 className='card bg-base-100 shadow-xl'
@@ -252,6 +274,8 @@ export const Home: FC<HomeProps> = ({
                     }
                 </div>
             </div> */}
+
+
         </div>
         
         

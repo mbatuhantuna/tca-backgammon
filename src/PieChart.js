@@ -17,16 +17,15 @@ export default function PieChart() {
          chartInstance.current = new Chart(myChartRef,{
             type:"pie",
             data: {
-                labels: ["Label1","Label2","Label3"],
+                labels: ["Wins","Losts"],
                 datasets : [  
 
 
                     {
-                        data: [300, 50, 100],
+                        data: [300, 50,],
                         backgroundColor: [
-                        'rgb(255, 99, 132)',
+                        'rgb(60, 179, 113)',
                         'rgb(54, 162, 235)',
-                        'rgb(255, 205, 86)'
                         ],
                     }
                 ]
