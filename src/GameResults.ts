@@ -15,7 +15,7 @@ export type GameResult = {
     players: string[];
     start: string;
     end: string;
-    playerDoubles: [string, number][];
+    playerDoubles?: [string, number][];
 };
 
 export type LeaderboardEntry = {
@@ -146,7 +146,19 @@ const getLeaderboardEntryForPlayer = (results: GameResult[], player: string): Le
         // 3 - Get the players doubles from the playerGames.
         // 4 - Sum the players doubles.
 
-        // const playerDoubles = 
+        const playerDoubles = playerGames
+        .flatMap(
+            x => x.playerDoubles?.filter(
+                y => y[0] === player
+            )
+        )
+        .map(x => x ? x[1] : 0)
+    ;
+
+    const playerDoublesTotal = playerDoubles.reduce(
+        (acc, x) => acc + x
+        , 0
+    );
 
        
      
@@ -164,7 +176,7 @@ const getLeaderboardEntryForPlayer = (results: GameResult[], player: string): Le
         , name: player
 
           // 5 - Change "batu" below to the avg (division), and maybe with a toFixed(2) to make it a string.
-        ,   abgPlayerDoubles: averageDoubles.toFixed(2)
+          , abgPlayerDoubles: (playerDoublesTotal / playerGames.length).toFixed(2)
     };
 };
 
