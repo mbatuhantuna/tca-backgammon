@@ -1,7 +1,9 @@
 import React, {useEffect,useRef} from 'react'
 import { Chart } from 'chart.js/auto'
 
-export default function PieChart() {
+export default function PieChart({playerForChart, leaderboardData}) {
+
+    // console.log(playerForChart, leaderboardData);
     const chartRef = useRef (null);
     const chartInstance = useRef (null);
 
@@ -13,6 +15,10 @@ export default function PieChart() {
 
          const myChartRef = chartRef.current.getContext('2d');
 
+         const leaderboardEntryToChart = leaderboardData.find(x => x.name === playerForChart);
+         console.log(leaderboardEntryToChart);
+         const wins = leaderboardEntryToChart?.wins ?? 0;
+         const losses = leaderboardEntryToChart?.losses ?? 0;
 
          chartInstance.current = new Chart(myChartRef,{
             type:"pie",
@@ -22,7 +28,7 @@ export default function PieChart() {
 
 
                     {
-                        data: [300, 50,],
+                        data: [wins, losses,],
                         backgroundColor: [
                         'rgb(60, 179, 113)',
                         'rgb(54, 162, 235)',
@@ -38,7 +44,7 @@ export default function PieChart() {
                 chartInstance.current.destroy()
             }
          }
-    }, []);
+    }, [playerForChart]);
 
     return (
         <div
