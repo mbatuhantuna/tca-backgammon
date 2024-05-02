@@ -2,7 +2,7 @@
   "name": "tca-backgammon",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://2024-spring-adv-fe.github.io/tca-backgammon",
+  "homepage": "https://mbatuhantuna.github.io/tca-backgammon",
   "dependencies": {
     "@aws-sdk/util-dynamodb": "^3.556.0",
     "@testing-library/jest-dom": "^5.17.0",
