@@ -74,9 +74,6 @@ export const Play: FC<PlayProps> = ({
                 </button>
               </div>
          
-          <p>local 
-            other controls here
-          </p>
             <button
               className="btn btn-outline btn-primary"
               onClick={() => {
@@ -85,7 +82,6 @@ export const Play: FC<PlayProps> = ({
                   players: chosenPlayers,
                   start: start,
                   end: new Date().toISOString(),
-                    // 2 - Then store your doubles when a game is over...
                     playerDoubles: playerDoubles
                 });
                 nav(-2);
@@ -96,10 +92,6 @@ export const Play: FC<PlayProps> = ({
           </div>
         </div>
       ))}
-      <p 
-      className="text-xs"
-      >Play the game and tap the app ! ! !
-      </p>
     </div>
   );
 };
